@@ -3,6 +3,7 @@ import styles from "@/styles/Home.module.css";
 import { format } from "path";
 import { useState } from "react";
 import Landing from "@/components/Landing";
+import Admin from "@/components/Admin";
 
 export default function Home() {
   const [form, setForm] = useState({
@@ -41,6 +42,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Admin />
       <Landing />
     </>
   );
