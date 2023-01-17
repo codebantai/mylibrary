@@ -7,7 +7,7 @@ export default async function  createBookHandler(
   req,
   res
 ) {
-  const { query, method,body } = req
+  const {  method } = req
   
   const bookData = req.body
 
@@ -17,7 +17,7 @@ export default async function  createBookHandler(
         res.status(200).json(createdBook);
       break
     default:
-      res.setHeader('Allow', ['POST'])
+      res.setHeader('Allow', ['POST','GET'])
       res.status(405).end(`Method ${method} Not Allowed`)
   }
 }
