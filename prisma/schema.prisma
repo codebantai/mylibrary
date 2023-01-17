@@ -10,10 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Roles{
-  id Int @id @default(autoincrement())
-  name String
+model Roles {
+  id        Int      @id @default(autoincrement())
+  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+}
+
+model Books {
+  id         Int      @id @default(autoincrement())
+  name       String
+  author     String
+  rack       Int
+  available  Boolean
+  categoryId Int
+  category Categories @relation(fields: [categoryId],references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+}
+
+model Categories {
+  id   Int    @id @default(autoincrement())
+  name String
+  books Books[]
 }
