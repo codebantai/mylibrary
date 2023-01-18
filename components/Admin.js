@@ -45,9 +45,9 @@ export default function Admin({ categoriesData }) {
 
   return (
     <div className="w-full h-screen flex justify-center items-center bg-gradient-to-tr from-[#44A08D] to-[#093637]">
-      <div className="bg-gray-100 p-20 w-1/2 rounded-md shadow-md">
+      <div className="bg-gray-100 p-10 md:p-20 w-full lg:w-1/2 rounded-md shadow-md">
         <div className="mb-10 flex justify-between items-center">
-          <h2 className="text-3xl">Add New Book</h2>
+          <h2 className="text-2xl md:text-3xl">Add New Book</h2>
           <button onClick={()=>router.push('/admin/books')} className="text-[#0b3838] border border-[#0b3838] hover:bg-[#0e5152] hover:text-white font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5">
             Listings
           </button>
