@@ -12,6 +12,9 @@ export default async function  createBookHandler(
   const bookData = req.body
 
   switch (method) {
+    case 'OPTIONS':
+      res.status(200).end();
+      break
     case 'POST':
         const createdBook = await prisma.books.create({data:bookData})
         res.status(200).json(createdBook);
@@ -27,7 +30,7 @@ export default async function  createBookHandler(
         res.status(200).json(updatedBook);
       break
     default:
-      res.setHeader('Allow', ['POST','GET','PUT'])
+      res.setHeader('Allow', ['POST','GET','PUT','OPTIONS'])
       res.status(405).end(`Method ${method} Not Allowed`)
   }
 }

@@ -9,6 +9,9 @@ export default async function  createBookHandler(
 ) {
   const { query, method } = req;
   switch (method) {
+    case 'OPTIONS':
+      res.status(200).end();
+      break
     case 'GET':
       const {skip,take,categoryId,search} = query;
         const booksResult = await prisma.$transaction([
@@ -47,7 +50,7 @@ export default async function  createBookHandler(
         res.status(200).json(booksResult);
       break
     default:
-      res.setHeader('Allow', ['GET'])
+      res.setHeader('Allow', ['GET','OPTIONS'])
       res.status(405).end(`Method ${method} Not Allowed`)
   }
 }
