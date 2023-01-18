@@ -60,9 +60,14 @@ export default function Home({ categoriesData }) {
   );
 }
 
-export async function getServerSideProps({ req: { cookies }, resolvedUrl }) {
+export async function getServerSideProps({ req: { cookies ,headers}, resolvedUrl }) {
 
   const categoriesResponse = await getCategories();
+  console.log("🚀 ~ file: index.js:66 ~ getServerSideProps ~ categoriesResponse", categoriesResponse)
+  if (headers) {
+    let host = headers.host // will give you localhost:3000
+    console.log("🚀 ~ file: index.js:69 ~ getServerSideProps ~ host", host)
+   }
   if (categoriesResponse?.status) {
     return { props: { categoriesData: categoriesResponse.data.map(category => Object.assign({}, { label: category.name, value: category.id })) } }
   } else {

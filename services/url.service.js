@@ -1,5 +1,7 @@
+const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 const UrlParamsReplace = (url, params = {}) => {
-    let urlWithPrefix = `/api/${url}`;
+    let urlWithPrefix = `${ApiUrl}/api/${url}`;
     if (params) {
         Object.keys(params).forEach((key) => {
             urlWithPrefix = urlWithPrefix.replace(`:${key}`, params[key]);
