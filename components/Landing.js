@@ -8,20 +8,24 @@ export default function Landing({categories,pagination,setSearch,search,searchCa
       boxShadow: "none",
       border:"none",
       shadow:"none",
-      width:"200px"
+      width:"200px",
+      "@media only screen and (max-width: 758px)": {
+        ...base["@media only screen and (max-width: 758px)"],
+        width: '100px'
+    },
     }),
     
 }
   return (
     <div className="md:px-32 py-8 w-full">
-      <h2 className="text-4xl font-medium">Library Management System</h2>
+      <h2 className="text-4xl text-center font-medium md:text-left">Library Management System</h2>
 
-      <div className="py-9 flex justify-between items-center ">
+      <div className="py-9 flex justify-center md:justify-between items-center ">
         
-          <div className="flex w-1/2 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg">
+          <div className="flex sm:w-3/5 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg">
             <ReactSelect
             instanceId="category-select"
-            className= "text-gray-900 text-sm bg-gray-50 rounded-l-lg border-r-gray-100 border-r-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+            className= "text-gray-900 text-sm bg-gray-50 rounded-l-lg border-r-gray-100 border-r-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:border-blue-500"
             components={{
               IndicatorSeparator: () => null
             }}
@@ -65,7 +69,7 @@ export default function Landing({categories,pagination,setSearch,search,searchCa
           </div>
       </div>
 
-      <div className=" overflow-hidden rounded border-b border-gray-200 shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]">
+      <div className=" lg:overflow-hidden overflow-x-scroll rounded border-b border-gray-200 shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]">
         <table className="min-w-full bg-white table-auto ">
           <thead className="bg-gray-800 text-white">
             <tr>
@@ -81,9 +85,9 @@ export default function Landing({categories,pagination,setSearch,search,searchCa
             {
               books[1] && books[1].map(book=>(
                 <tr key={book.id}>
-              <td className="">{book.name}</td>
-              <td className="">{book.author}</td>
-              <td className="">
+              <td className="whitespace-nowrap	">{book.name}</td>
+              <td className="whitespace-nowrap	">{book.author}</td>
+              <td className="whitespace-nowrap	">
                 <span className="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
                 {book.category.name}</span></td>
               <td className="">{book.rack}</td>
@@ -118,13 +122,13 @@ export default function Landing({categories,pagination,setSearch,search,searchCa
       {books && books[0] ? <div className="flex flex-col items-center p-10">
         <span className="text-sm text-gray-700 dark:text-gray-400">
           Showing{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">{pagination.skip + 1}</span>{" "}
+          <span className="font-semibold text-gray-900 ">{pagination.skip + 1}</span>{" "}
           to{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 ">
             { (pagination.skip) + pagination.take }
           </span>{" "}
           of{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 ">
             {books[0]}
           </span>{" "}
           Entries
