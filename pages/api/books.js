@@ -34,7 +34,7 @@ export default async function  createBookHandler(
                 skip : Number(skip),
                 take : Number(take),
                 orderBy : {
-                  name : 'asc'
+                  createdAt : 'desc'
                 },
                 include: {
                   category: true,

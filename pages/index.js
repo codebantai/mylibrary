@@ -1,14 +1,10 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { createRole } from '@/services/roles.service'
-import { createBook, getBooks, getCategories } from '@/services/books.service'
+import { getBooks, getCategories } from '@/services/books.service'
 import Landing from "@/components/Landing";
-import Admin from "@/components/Admin";
 
 export default function Home({ categoriesData }) {
-  const [form, setForm] = useState({
-    role: ''
-  });
+  
   const [categories, setCategories] = useState([{ label: 'All Categories', value: 0 } , ...(categoriesData ?? [])]);
   const [search, setSearch] = useState('');
   const [searchCategory, setSearchCategory] = useState({ label: 'All Categories', value: 0 });
@@ -17,22 +13,25 @@ export default function Home({ categoriesData }) {
     take: 10
   });
   const [books, setBooks] = useState([])
+  const [loading,setLoading] = useState(false);
 
   const fetchBooks = async () => {
     const { skip, take } = pagination;
+    setLoading(true)
     const booksResponse = await getBooks({
       skip,
       take,
       categoryId: searchCategory?.value === 0 ? null : searchCategory?.value ?? null,
       search
     });
+    setLoading(false)
     if (booksResponse) {
       setBooks(booksResponse.data)
     }
   }
 
   useEffect(() => {
-    fetchBooks()
+    fetchBooks();
   }, [searchCategory, search, pagination])
 
 
@@ -46,6 +45,7 @@ export default function Home({ categoriesData }) {
       </Head>
     <main className='w-full flex justify-center items-center  to-black'>
       <Landing
+        loading={loading}
         books={books}
         setPagination={setPagination}
         search={search}

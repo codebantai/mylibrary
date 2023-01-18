@@ -100,3 +100,22 @@ export const putWithAuth = (url, data, token = '') => {
             });
     });
 };
+
+
+export const putWithOutAuth = (url, data, ) => {
+    const headers = {
+        'content-type': 'application/json',
+    };
+    return new Promise((resolve, _reject) => {
+        axios
+            .put(url, data, { headers })
+            .then((response) => {
+                if (response && response.data) {
+                    resolve({ status: true, data: response.data });
+                }
+            })
+            .catch((ex) => {
+                resolve({ status: false, message: ex.message });
+            });
+    });
+};

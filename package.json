@@ -32,8 +32,11 @@
     "nextjs-progressbar": "^0.0.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.42.1",
     "react-select": "^5.7.0",
-    "typescript": "4.9.4"
+    "react-toastify": "^9.1.1",
+    "typescript": "4.9.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
